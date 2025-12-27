@@ -3,20 +3,22 @@ package com.example.GM.Publication.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "sub_category")
 public class SubCategory {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @ManyToMany
-    private Category category_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     private String status;
 
+    // getters & setters
     public Long getId() {
         return id;
     }
@@ -33,12 +35,12 @@ public class SubCategory {
         this.name = name;
     }
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getStatus() {
