@@ -1,6 +1,6 @@
 package com.example.GM.Publication.entity.enums;
 
-public enum ProductType {
+public enum OrderType {
 
     PDF_ONLY,
     HARDCOPY,

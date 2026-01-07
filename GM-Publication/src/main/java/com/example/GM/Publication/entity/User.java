@@ -2,6 +2,8 @@ package com.example.GM.Publication.entity;
 
 import com.example.GM.Publication.entity.enums.Role;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,14 +19,13 @@ public class User {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
     @CollectionTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id")
     )
-    @Column(name = "role")
-    private Set<Role> roles;
-
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
     // getters & setters
 
 
